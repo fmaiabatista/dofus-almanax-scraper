@@ -1,0 +1,9 @@
+✔ 1) Create calendar.json with format { dates: [ "2018-01-01", ... ] } @done (2018-8-3 19:49:46)
+✔ 2) Scrape Dofus Almanax pages to get @done (2018-8-3 19:49:09)
+  ✔ "date", "merida", "item.name.eng", "item.quantity", "item.image", @done (2018-8-3 19:50:17)
+  ✔ "bonus.name.eng", "bonus.description.eng" @done (2018-8-3 19:50:18)
+✔ 3) Create "item.link.search" from "item.name.eng" and push to file @done (2018-8-3 19:49:13)
+✔ 4) Scrape Dofus Search to get "item.link.eng" @done (2018-8-3 19:49:13)
+✔ 5) Create "item.link.br" from "item.link.eng" and push to file @done (2018-8-3 19:49:14)
+✔ 6) Scrape Dofus Items to get "item.name.br" @done (2018-8-3 19:49:14)
+☐ 7) Create "bonus.name.br" and "bonus.description.br"

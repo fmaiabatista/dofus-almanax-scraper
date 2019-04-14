@@ -1,0 +1,22 @@
+{
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "rules": {
+    "capitalized-comments": ["error", "always"],
+    "curly": ["error", "all"],
+    "max-len": [
+      "error",
+      {
+        "code": 100,
+        "ignoreUrls": true
+      }
+    ],
+    "multiline-comment-style": ["error", "starred-block"],
+    "no-console": "off",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ]
+  }
+}
