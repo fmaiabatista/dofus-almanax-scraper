@@ -1,4 +1,4 @@
-module.exports = error => {
+module.exports = (error, context = null) => {
   if (error.response) {
     /*
      * The request was made and the server responded with a
@@ -19,7 +19,9 @@ module.exports = error => {
   } else {
     // Something happened in setting up the request and triggered an Error
     // Also used for handling other errors throughout the app
-    console.log("\n🚫 ERROR");
+    console.log(context ? `\n🚫 ERROR: ${context}` : "\n🚫 ERROR");
     console.log(`❗️ ${error}`);
   }
+
+  console.log("\n");
 };

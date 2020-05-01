@@ -1,19 +1,20 @@
 const fs = require("fs");
 const axios = require("axios");
-const axiosRetry = require("axios-retry");
 const eachDayOfInterval = require("date-fns/eachDayOfInterval");
 const startOfYear = require("date-fns/startOfYear");
 const endOfYear = require("date-fns/endOfYear");
 const getItem = require("./helpers/getItem");
-const getLink = require("./helpers/getLink");
+const getLinks = require("./helpers/getLinks");
+const getNamePTBR = require("./helpers/getNamePTBR");
 const handleErrors = require("./helpers/handleErrors");
 const c = require("./helpers/constants");
 
 // Calendar array to be used in the dynamic URL
 const dates = eachDayOfInterval({
   start: startOfYear(new Date()),
-  // end: endOfYear(new Date())
-  end: new Date(2020, 0, 4)
+  end: endOfYear(new Date())
+  // start: new Date(2020, 5, 3), // For testing
+  // end: new Date(2020, 5, 3) // For testing
 }).map(date => date.toISOString().split("T")[0]);
 
 // Get a copy from or create object that will hold the data
@@ -25,11 +26,11 @@ try {
 }
 
 // Set request retry conditions
-axiosRetry(axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
+c.AXIOS_RETRY(axios);
 
 // Async function to get the data from Krosmoz.com
 const getAlmanax = async () => {
-  console.log("🕵️‍♂️  Starting scrape for items...");
+  console.log("🕵️‍♂️  Start scraping...");
 
   // Loop through calendar array
   for (const [i, date] of dates.entries()) {
@@ -44,8 +45,26 @@ const getAlmanax = async () => {
           `http://www.krosmoz.com/en/almanax/${date}`
         );
 
+        // Get original item info
         const [qty, name, search, img, merida, title, desc] = getItem(res);
 
+        // Get Encyclopedia links to be able to find the item name in another language
+        let linkENUS, linkPTBR;
+        try {
+          [linkENUS, linkPTBR] = await getLinks(date, name, search);
+        } catch (err) {
+          handleErrors(err, "getLinks");
+        }
+
+        // Get the item name in Portuguese
+        let namePTBR;
+        try {
+          namePTBR = await getNamePTBR(date, linkPTBR, name);
+        } catch (err) {
+          handleErrors(err, "getNamePTBR");
+        }
+
+        // Mount the item object
         almanax[i] = {
           date,
           merida,
@@ -60,58 +79,31 @@ const getAlmanax = async () => {
           item: {
             img,
             link: {
-              search
+              search,
+              [c.ENUS]: linkENUS,
+              [c.PTBR]: linkPTBR
             },
             name: {
-              [c.ENUS]: name
+              [c.ENUS]: name,
+              [c.PTBR]: namePTBR
             },
             qty
           }
         };
       } catch (err) {
-        handleErrors(err);
+        handleErrors(err, "getAlmanax");
       }
     }
   }
 
   console.log(
-    `✅ Done (total: ${almanax.filter(v => v !== undefined).length})`
-  );
-};
-
-// Async function to get the item link from Dofus.com
-const getEncyclopediaLink = async () => {
-  console.log("\n🕵️‍♂️  Starting scrape for links...");
-
-  for (const [_, entry] of almanax.entries()) {
-    const name = entry.item.name[c.ENUS];
-    const link = entry.item.link;
-
-    if (link[c.ENUS]) {
-      // If link already exists
-      console.log(`🤙 Link for "${name}" already exists. Skipping.`);
-    } else {
-      try {
-        console.log(`🔍 Grabbing link for ${entry.date}: ${name}`);
-
-        const res = await axios.get(link.search);
-
-        link[c.ENUS] = getLink(res, name, c.ENUS);
-      } catch (err) {
-        handleErrors(err);
-      }
-    }
-  }
-
-  console.log(
-    `✅ Done (total: ${almanax.filter(v => v !== undefined).length})`
+    `✅ Done (total items: ${almanax.filter(v => v !== undefined).length})`
   );
 };
 
 const writeFile = async () => {
   try {
     await getAlmanax();
-    await getEncyclopediaLink();
 
     // Check if file exists
     if (fs.existsSync(c.FILEPATH)) {
@@ -130,7 +122,7 @@ const writeFile = async () => {
     fs.writeFileSync(c.FILEPATH, JSON.stringify({ almanax }, null, 2));
     console.log(`✅ File is ready at "${c.FILEPATH}"`);
   } catch (err) {
-    handleErrors(err);
+    handleErrors(err, "writeFile");
   }
 };
 

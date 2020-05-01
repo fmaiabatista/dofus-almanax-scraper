@@ -1,7 +1,7 @@
 const cheerio = require("cheerio");
 
-module.exports = response => {
-  const html = response.data;
+module.exports = res => {
+  const html = res.data;
   const $ = cheerio.load(html);
 
   // Quantity and Name
