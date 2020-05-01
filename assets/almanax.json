@@ -14,7 +14,8 @@
       "item": {
         "img": "http://static.ankama.com/dofus/www/game/items/200/105205.w75h75.png",
         "link": {
-          "search": "https://www.dofus.com/en/search?q=Clay+Dreggon+Egg"
+          "search": "https://www.dofus.com/en/search?q=Clay+Dreggon+Egg",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/845-clay-dreggon-egg"
         },
         "name": {
           "en-us": "Clay Dreggon Egg"
@@ -34,7 +35,11 @@
         }
       },
       "item": {
-        "image": "http://static.ankama.com/dofus/www/game/items/200/34154.w75h75.png",
+        "img": "http://static.ankama.com/dofus/www/game/items/200/34154.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Oats",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/533-oats"
+        },
         "name": {
           "en-us": "Oats"
         },
@@ -53,7 +58,11 @@
         }
       },
       "item": {
-        "image": "http://static.ankama.com/dofus/www/game/items/200/15014.w75h75.png",
+        "img": "http://static.ankama.com/dofus/www/game/items/200/15014.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Sparo%27s+Scarf",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/8760-sparo-scarf"
+        },
         "name": {
           "en-us": "Sparo's Scarf"
         },
@@ -72,7 +81,11 @@
         }
       },
       "item": {
-        "image": "http://static.ankama.com/dofus/www/game/items/200/65759.w75h75.png",
+        "img": "http://static.ankama.com/dofus/www/game/items/200/65759.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Gluttonous+Brockhard+Tail",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/11921-gluttonous-brockhard-tail"
+        },
         "name": {
           "en-us": "Gluttonous Brockhard Tail"
         },

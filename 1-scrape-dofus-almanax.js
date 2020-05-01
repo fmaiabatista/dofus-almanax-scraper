@@ -4,32 +4,32 @@ const axiosRetry = require("axios-retry");
 const eachDayOfInterval = require("date-fns/eachDayOfInterval");
 const startOfYear = require("date-fns/startOfYear");
 const endOfYear = require("date-fns/endOfYear");
-const getInfo = require("./helpers/getInfo");
+const getItem = require("./helpers/getItem");
+const getLink = require("./helpers/getLink");
 const handleErrors = require("./helpers/handleErrors");
+const c = require("./helpers/constants");
 
-const FILEPATH = "./assets/almanax.json";
+// Calendar array to be used in the dynamic URL
+const dates = eachDayOfInterval({
+  start: startOfYear(new Date()),
+  // end: endOfYear(new Date())
+  end: new Date(2020, 0, 4)
+}).map(date => date.toISOString().split("T")[0]);
+
+// Get a copy from or create object that will hold the data
+let almanax;
+try {
+  almanax = [...require(c.FILEPATH).almanax];
+} catch (_) {
+  almanax = Array.from(new Array(dates.length));
+}
+
+// Set request retry conditions
+axiosRetry(axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
 
 // Async function to get the data from Krosmoz.com
 const getAlmanax = async () => {
-  console.log("🕵️‍♂️  Starting scrape...");
-
-  // Set request retry conditions
-  axiosRetry(axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
-
-  // Calendar array to be used in the dynamic URL
-  const dates = eachDayOfInterval({
-    start: startOfYear(new Date()),
-    // end: endOfYear(new Date())
-    end: new Date(2020, 0, 4)
-  }).map(date => date.toISOString().split("T")[0]);
-
-  // Get a copy from or create object that will hold the data
-  let almanax;
-  try {
-    almanax = [...require(FILEPATH).almanax];
-  } catch (_) {
-    almanax = Array.from(new Array(dates.length));
-  }
+  console.log("🕵️‍♂️  Starting scrape for items...");
 
   // Loop through calendar array
   for (const [i, date] of dates.entries()) {
@@ -38,23 +38,23 @@ const getAlmanax = async () => {
       console.log(`🤙 Item for ${date} already exists. Skipping.`);
     } else {
       try {
+        console.log(`🔍 Grabbing item for ${date}`);
+
         const res = await axios.get(
           `http://www.krosmoz.com/en/almanax/${date}`
         );
 
-        const [qty, name, search, img, merida, title, desc] = getInfo(res);
-
-        console.log(`🔍 Grabbing item for ${date}: ${qty}x ${name}`);
+        const [qty, name, search, img, merida, title, desc] = getItem(res);
 
         almanax[i] = {
           date,
           merida,
           bonus: {
             title: {
-              "en-us": title
+              [c.ENUS]: title
             },
             description: {
-              "en-us": desc
+              [c.ENUS]: desc
             }
           },
           item: {
@@ -63,7 +63,7 @@ const getAlmanax = async () => {
               search
             },
             name: {
-              "en-us": name
+              [c.ENUS]: name
             },
             qty
           }
@@ -77,30 +77,58 @@ const getAlmanax = async () => {
   console.log(
     `✅ Done (total: ${almanax.filter(v => v !== undefined).length})`
   );
+};
 
-  return almanax;
+// Async function to get the item link from Dofus.com
+const getEncyclopediaLink = async () => {
+  console.log("\n🕵️‍♂️  Starting scrape for links...");
+
+  for (const [_, entry] of almanax.entries()) {
+    const name = entry.item.name[c.ENUS];
+    const link = entry.item.link;
+
+    if (link[c.ENUS]) {
+      // If link already exists
+      console.log(`🤙 Link for "${name}" already exists. Skipping.`);
+    } else {
+      try {
+        console.log(`🔍 Grabbing link for ${entry.date}: ${name}`);
+
+        const res = await axios.get(link.search);
+
+        link[c.ENUS] = getLink(res, name, c.ENUS);
+      } catch (err) {
+        handleErrors(err);
+      }
+    }
+  }
+
+  console.log(
+    `✅ Done (total: ${almanax.filter(v => v !== undefined).length})`
+  );
 };
 
 const writeFile = async () => {
   try {
-    const almanax = await getAlmanax();
+    await getAlmanax();
+    await getEncyclopediaLink();
 
     // Check if file exists
-    if (fs.existsSync(FILEPATH)) {
-      const prevAlmanax = require(FILEPATH).almanax;
+    if (fs.existsSync(c.FILEPATH)) {
+      const prevAlmanax = require(c.FILEPATH).almanax;
 
       // Check if content did not change
       if (JSON.stringify(prevAlmanax) === JSON.stringify(almanax)) {
         console.log("\n📁 Content did not change. Skipping.");
-        console.log(`✅ File is ready, unchanged at "${FILEPATH}"`);
+        console.log(`✅ File is ready, unchanged at "${c.FILEPATH}"`);
         return;
       }
     }
 
     // If there are changes, rewrite file
     console.log("\n📁 Writing file...");
-    fs.writeFileSync(FILEPATH, JSON.stringify({ almanax }, null, 2));
-    console.log(`✅ File is ready at "${FILEPATH}"`);
+    fs.writeFileSync(c.FILEPATH, JSON.stringify({ almanax }, null, 2));
+    console.log(`✅ File is ready at "${c.FILEPATH}"`);
   } catch (err) {
     handleErrors(err);
   }

@@ -6,8 +6,8 @@ module.exports = response => {
 
   // Quantity and Name
   const questInstructions = $(".achievement.dofus:first-of-type .fleft").text();
-  let regex = /.*\s(\d+)\s(.*)\sand.*/g;
-  let arr = regex.exec(questInstructions);
+  let regexp = /.*\s(\d+)\s(.*)\sand.*/g;
+  let arr = regexp.exec(questInstructions);
   const quantity = arr[1];
   const name = arr[2];
 
@@ -25,8 +25,8 @@ module.exports = response => {
   const questTitle = $(
     ".achievement.dofus:first-of-type .more-infos p:first-child"
   ).text();
-  regex = /.*for\s(.*)/g;
-  arr = regex.exec(questTitle);
+  regexp = /.*for\s(.*)/g;
+  arr = regexp.exec(questTitle);
   const merida = arr[1];
 
   // Bonus title
@@ -34,18 +34,18 @@ module.exports = response => {
     .contents()
     .get(2)
     .nodeValue.trim();
-  regex = /.*:\s(.*)/g;
-  arr = regex.exec(questBonusTitle);
+  regexp = /.*:\s(.*)/g;
+  arr = regexp.exec(questBonusTitle);
   const bonusTitle = arr[1];
 
   // Bonus description
   const questBonusDescription = $(
     ".achievement.dofus:first-of-type .more"
   ).html();
-  regex = /(.*)<div class="more-infos">/g;
-  arr = regex.exec(questBonusDescription);
-  regex = /<\/?b>/g;
-  const bonusDescription = arr[1].replace(regex, "").trim();
+  regexp = /(.*)<div class="more-infos">/g;
+  arr = regexp.exec(questBonusDescription);
+  regexp = /<\/?b>/g;
+  const bonusDescription = arr[1].replace(regexp, "").trim();
 
   return [quantity, name, search, image, merida, bonusTitle, bonusDescription];
 };
