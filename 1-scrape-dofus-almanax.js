@@ -1,135 +1,75 @@
 const fs = require("fs");
 const axios = require("axios");
-const dayjs = require("dayjs");
-const cheerio = require("cheerio");
 const axiosRetry = require("axios-retry");
+const eachDayOfInterval = require("date-fns/eachDayOfInterval");
+const startOfYear = require("date-fns/startOfYear");
+const endOfYear = require("date-fns/endOfYear");
+const getInfo = require("./helpers/getInfo");
+const handleErrors = require("./helpers/handleErrors");
 
-const almanax = { data: [] };
-const path = "./Assets/scraped-almanax-TMP.json";
+const FILEPATH = "./assets/almanax.json";
 
-const startDate = dayjs().startOf("year");
-const endDate = dayjs()
-  .endOf("year")
-  .add(1, "day");
-const daysDiff = endDate.diff(startDate, "day");
+// Async function to get the data from Krosmoz.com
+const getData = async () => {
+  console.log("🕵️‍♂️  Starting scrape...");
 
-let date = dayjs().startOf("year");
-let index = 0;
+  // Set request retry conditions
+  axiosRetry(axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
 
-function deleteFileIfExists(filePath) {
-  if (fs.existsSync(filePath)) {
-    console.log(`Deleting previous file...`);
-    fs.unlinkSync(filePath);
-    console.log("Done deleting previous file.");
-  }
-}
+  // Calendar array to be used in the dynamic URL
+  const dates = eachDayOfInterval({
+    start: startOfYear(new Date()),
+    end: endOfYear(new Date())
+  }).map(date => date.toISOString().split("T")[0]);
 
-function writeToFile(filePath, data) {
-  console.log("Writing file...");
-  fs.appendFileSync(filePath, JSON.stringify(data, null, 2));
-  console.log("Done writing file.");
-}
+  // Create object that will hold the data
+  const almanax = { data: Array.from(new Array(365)) };
 
-console.log(
-  `Will request data from dates ${startDate.format(
-    "YYYY-MM-DD",
-  )} to ${endDate
-    .subtract(1, "day")
-    .format("YYYY-MM-DD")} totalizing ${daysDiff} requests.`,
-);
+  for (const [i, date] of dates.entries()) {
+    try {
+      const response = await axios.get(
+        `http://www.krosmoz.com/en/almanax/${date}`
+      );
 
-// Set request retry conditions
-axiosRetry(axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
+      const [qty, name, image, merida, title, description] = getInfo(response);
 
-// Remove file if it exists from previous run
-deleteFileIfExists(path);
+      console.log(`🔍 Grabbing item for ${date}: ${qty}x ${name}`);
 
-/* eslint-disable no-loop-func */
-while (endDate.diff(date, "day") > 0) {
-  const formattedDate = date.format("YYYY-MM-DD");
-
-  console.log(`Requesting data for ${formattedDate}...`);
-  axios
-    .get(`http://www.krosmoz.com/pt/almanax/${formattedDate}`)
-    .then(response => {
-      if (response.status === 200) {
-        const html = response.data;
-        const $ = cheerio.load(html);
-
-        index = dayjs(formattedDate).diff(startDate, "day");
-
-        // Get item and quantity
-        const questInstructions = $(
-          ".achievement.dofus:first-of-type .fleft",
-        ).text();
-        let regex = /.*\s(\d+)\s(.*)\sand.*/g;
-        let arr = regex.exec(questInstructions);
-        const itemQuantity = arr[1];
-        const itemNameEng = arr[2];
-        const itemImage = $(".achievement.dofus:first-of-type img").attr("src");
-
-        // Get merida
-        const questTitle = $(
-          ".achievement.dofus:first-of-type .more-infos p:first-child",
-        ).text();
-        regex = /.*for\s(.*)/g;
-        arr = regex.exec(questTitle);
-        const merida = arr[1];
-
-        // Get bonus title
-        const questBonusTitle = $(".achievement.dofus:first-of-type .mid")
-          .contents()
-          .get(2)
-          .nodeValue.trim();
-        regex = /.*:\s(.*)/g;
-        arr = regex.exec(questBonusTitle);
-        const bonusTitleEng = arr[1];
-
-        // Get bonus description
-        const questBonusDescription = $(
-          ".achievement.dofus:first-of-type .more",
-        ).html();
-        regex = /(.*)<div class="more-infos">/g;
-        arr = regex.exec(questBonusDescription);
-        regex = /<\/?b>/g;
-        const bonusDescriptionEng = arr[1].replace(regex, "").trim();
-
-        // Push data to array in corresponding index
-        almanax.data[index] = {
-          index,
-          date: formattedDate,
-          merida,
-          item: {
-            name: {
-              eng: itemNameEng,
-            },
-            quantity: itemQuantity,
-            image: itemImage,
-          },
-          bonus: {
-            title: {
-              eng: bonusTitleEng,
-            },
-            description: {
-              eng: bonusDescriptionEng,
-            },
-          },
-        };
-        console.log(`Received data for ${formattedDate} (${index}).`);
-
-        if (almanax.data.length === daysDiff) {
-          console.log(`Finished receiving all ${daysDiff} requests.`);
-          writeToFile(path, almanax);
-          process.exit(0);
+      almanax.data[i] = {
+        date,
+        merida,
+        bonus: {
+          title,
+          description
+        },
+        item: {
+          image,
+          name,
+          qty
         }
-      } else if (response.status !== 200) {
-        console.log("Error:", response.status);
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      process.exit(-1);
-    });
+      };
+    } catch (err) {
+      handleErrors(err);
+    }
+  }
 
-  date = date.add(1, "day");
-}
+  console.log(
+    `✅ Done (total: ${almanax.data.filter(v => v !== undefined).length})`
+  );
+  return almanax;
+};
+
+const writeFile = async () => {
+  try {
+    const data = await getData();
+
+    console.log("\n📁 Writing file...");
+    fs.writeFileSync(FILEPATH, JSON.stringify(data, null, 2));
+    console.log(`✅ File is ready at "${FILEPATH}"`);
+  } catch (err) {
+    handleErrors(err);
+  }
+};
+
+console.clear();
+writeFile();

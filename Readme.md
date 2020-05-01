@@ -1,1 +1,1 @@
-Initial commit.
+# Dofus Almanax Web Scraper

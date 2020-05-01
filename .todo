@@ -7,3 +7,19 @@
 ✔ 5) Create "item.link.br" from "item.link.eng" and push to file @done (2018-8-3 19:49:14)
 ✔ 6) Scrape Dofus Items to get "item.name.br" @done (2018-8-3 19:49:14)
 ☐ 7) Create "bonus.name.br" and "bonus.description.br"
+
+Objetivo
+
+> Obter um JSON com 365 entradas
+
+Etapas:
+
+> Requisitar página a página do Almanax
+> Parsear os dados
+  meridia name
+  bonus
+  bonus description
+  quest name
+  quest item name
+  quest item quantity
+> Escrever num objeto ou arquivo, de forma ordenada
