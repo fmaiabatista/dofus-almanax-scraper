@@ -20,7 +20,6 @@ module.exports = error => {
     // Something happened in setting up the request and triggered an Error
     // Also used for handling other errors throughout the app
     console.log("\n🚫 ERROR");
-    console.log(`❗️ ${error.message}`);
     console.log(`❗️ ${error}`);
   }
 };

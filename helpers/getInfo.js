@@ -11,6 +11,13 @@ module.exports = response => {
   const quantity = arr[1];
   const name = arr[2];
 
+  // Search link
+  let search;
+  if (name) {
+    const term = name.replace(/\s/g, "+").replace("'", "%27");
+    search = `https://www.dofus.com/en/search?q=${term}`;
+  }
+
   // Image
   const image = $(".achievement.dofus:first-of-type img").attr("src");
 
@@ -40,5 +47,5 @@ module.exports = response => {
   regex = /<\/?b>/g;
   const bonusDescription = arr[1].replace(regex, "").trim();
 
-  return [quantity, name, image, merida, bonusTitle, bonusDescription];
+  return [quantity, name, search, image, merida, bonusTitle, bonusDescription];
 };
