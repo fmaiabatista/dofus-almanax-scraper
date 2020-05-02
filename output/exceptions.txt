@@ -1,0 +1,35 @@
+🔗 2020-01-21: Bottle of Greedoburg is missing link.en-us
+"search": "https://www.dofus.com/en/search?q=Bottle+of+Greedoburg"
+> Not shown in the results
+https://www.dofus.com/en/mmorpg/encyclopedia/consumables/9968-bottle-greedoburg
+https://www.dofus.com/pt/mmorpg/enciclopedia/itens-consumiveis/9968-bottle-greedoburg
+
+🔗 2020-04-06: Boowonoké Hairs is missing link.en-us
+"search": "https://www.dofus.com/en/search?q=Boowonoké+Hairs"
+> It's the third result
+https://www.dofus.com/en/mmorpg/encyclopedia/resources/291-boowonoke-hairs
+https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/291-boowonoke-hairs
+
+🔗 2020-09-21: Vor'Om Axe is missing link.en-us
+"search": "https://www.dofus.com/en/search?q=Vor%27Om+Axe"
+> It's the second result
+https://www.dofus.com/en/mmorpg/encyclopedia/weapons/2590-om-axe
+https://www.dofus.com/pt/mmorpg/enciclopedia/armas/2590-om-axe
+
+🔗 2020-12-16: Scarlet Kwismas Wrapping Paper is missing link.en-us
+"search": "https://www.dofus.com/en/search?q=Scarlet+Kwismas+Wrapping+Paper"
+> Not shown in the results
+https://dofuswiki.fandom.com/wiki/Scarlet_Kwismas_Wrapping_Paper
+> Apparently doesn't exist in Dofus' Encyclopedia
+
+🔗 2020-12-25: Kwismas Gift is missing link.en-us
+"search": "https://www.dofus.com/en/search?q=Kwismas+Gift"
+> Not shown in the results
+https://dofuswiki.fandom.com/wiki/Kwismas_Gift
+> Apparently doesn't exist in Dofus' Encyclopedia
+
+🔗 2020-12-28: Kwismas Gift is missing link.en-us
+"search": "https://www.dofus.com/en/search?q=Kwismas+Gift"
+> Not shown in the results
+https://dofuswiki.fandom.com/wiki/Kwismas_Gift
+> Apparently doesn't exist in Dofus' Encyclopedia
