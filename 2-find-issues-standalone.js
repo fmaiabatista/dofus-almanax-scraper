@@ -4,7 +4,7 @@ const getDateOfYear = require("./helpers/getDateOfYear");
 const c = require("./helpers/constants");
 
 console.clear();
-console.log("🐞 Finding issues in Almanax...");
+console.log("\n🐞 Looking for issues in the Almanax...");
 
 const log = [];
 
@@ -28,6 +28,11 @@ almanax.forEach((entry, i) => {
   }
 });
 
-console.log("\n📄 Writing logfile...");
-fs.writeFileSync(c.LOGPATH, log.join("\n"));
-console.log(`✅ Logfile is ready at "${c.LOGPATH}"`);
+if (log.length) {
+  console.log("\n😢 Issues were found in the Almanax...");
+  console.log("📄 Writing logfile...");
+  fs.writeFileSync(c.LOGPATH, log.join("\n"));
+  console.log(`✅ Logfile is ready at "${c.LOGPATH}"`);
+} else {
+  console.log(`✨ Whoa! No errors were found! You're good to go!`);
+}

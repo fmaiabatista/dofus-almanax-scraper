@@ -1,21 +1,13 @@
 ❗️🔗 Bottle of Greedoburg is missing link.en-us
-❗️👎 Entry for 2020-02-17 is null
-❗️👎 Entry for 2020-02-18 is null
-❗️👎 Entry for 2020-02-19 is null
-❗️👎 Entry for 2020-02-20 is null
-❗️👎 Entry for 2020-02-21 is null
-❗️👎 Entry for 2020-02-22 is null
-❗️👎 Entry for 2020-02-23 is null
-❗️👎 Entry for 2020-02-24 is null
 ❗️🔗 Boowonoké Hairs is missing link.en-us
 ❗️🔗 Vor'Om Axe is missing link.en-us
 ❗️🔗 Scarlet Kwismas Wrapping Paper is missing link.en-us
-❗️👎 Entry for 2020-12-18 is null
-❗️👎 Entry for 2020-12-19 is null
-❗️👎 Entry for 2020-12-20 is null
-❗️👎 Entry for 2020-12-21 is null
-❗️👎 Entry for 2020-12-22 is null
-❗️👎 Entry for 2020-12-23 is null
-❗️👎 Entry for 2020-12-24 is null
-❗️👎 Entry for 2020-12-25 is null
+❗️🔦 Entry for 2020-12-18 is null
+❗️🔦 Entry for 2020-12-19 is null
+❗️🔦 Entry for 2020-12-20 is null
+❗️🔦 Entry for 2020-12-21 is null
+❗️🔦 Entry for 2020-12-22 is null
+❗️🔦 Entry for 2020-12-23 is null
+❗️🔦 Entry for 2020-12-24 is null
+❗️🔦 Entry for 2020-12-25 is null
 ❗️🔗 Kwismas Gift is missing link.en-us

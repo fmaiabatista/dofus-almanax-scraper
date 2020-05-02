@@ -1172,14 +1172,206 @@
         "qty": "3"
       }
     },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "date": "2020-02-17",
+      "merida": "Eidnas",
+      "bonus": {
+        "title": {
+          "en-us": "Loot"
+        },
+        "description": {
+          "en-us": "The chances of obtaining loot from creatures in the Mushroom family are increased by 75%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/15001.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Mushroom",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/290-mushroom",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/290-mushroom"
+        },
+        "name": {
+          "en-us": "Mushroom",
+          "pt-br": "Cogumelo"
+        },
+        "qty": "11"
+      }
+    },
+    {
+      "date": "2020-02-18",
+      "merida": "Amirniana",
+      "bonus": {
+        "title": {
+          "en-us": "Increased challenges"
+        },
+        "description": {
+          "en-us": "Bonuses gained by completing challenges are increased by 200% in the Ancestral Domain."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/108104.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Treechnid+Bud",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/437-treechnid-bud",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/437-treechnid-bud"
+        },
+        "name": {
+          "en-us": "Treechnid Bud",
+          "pt-br": "Broto de Arvraknídeo"
+        },
+        "qty": "5"
+      }
+    },
+    {
+      "date": "2020-02-19",
+      "merida": "Karat",
+      "bonus": {
+        "title": {
+          "en-us": "Plenty of fish"
+        },
+        "description": {
+          "en-us": "The quantity of fish harvested by fishermen of all levels is increased by 100%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/41277.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Kittenfish",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/603-kittenfish",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/603-kittenfish"
+        },
+        "name": {
+          "en-us": "Kittenfish",
+          "pt-br": "Peixe-gatinho"
+        },
+        "qty": "25"
+      }
+    },
+    {
+      "date": "2020-02-20",
+      "merida": "Atog",
+      "bonus": {
+        "title": {
+          "en-us": "Extra challenge"
+        },
+        "description": {
+          "en-us": "An extra challenge is generated for fights against monsters in the Tree Keeholo Trunk area."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/15022.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Air+Pikoko+Rump",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/8788-air-pikoko-rump",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/8788-air-pikoko-rump"
+        },
+        "name": {
+          "en-us": "Air Pikoko Rump",
+          "pt-br": "Traseiro do Bitufo Aéreo"
+        },
+        "qty": "2"
+      }
+    },
+    {
+      "date": "2020-02-21",
+      "merida": "Bii",
+      "bonus": {
+        "title": {
+          "en-us": "Experience points"
+        },
+        "description": {
+          "en-us": "Experience gained in the Gisgoul area is increased by 100%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/37001.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Bwork+Beer",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/consumables/8145-bwork-beer",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/itens-consumiveis/8145-bwork-beer"
+        },
+        "name": {
+          "en-us": "Bwork Beer",
+          "pt-br": "Cerveja de Bwork"
+        },
+        "qty": "8"
+      }
+    },
+    {
+      "date": "2020-02-22",
+      "merida": "Ludobel",
+      "bonus": {
+        "title": {
+          "en-us": "Loot"
+        },
+        "description": {
+          "en-us": "The chances of obtaining loot in the Dreggons&apos; Sanctuary area are increased by 100%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/59609.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Dragostess+Skin",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/8356-dragostess-skin",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/8356-dragostess-skin"
+        },
+        "name": {
+          "en-us": "Dragostess Skin",
+          "pt-br": "Pele de Dragosa"
+        },
+        "qty": "2"
+      }
+    },
+    {
+      "date": "2020-02-23",
+      "merida": "Rumo",
+      "bonus": {
+        "title": {
+          "en-us": "Generation of resources"
+        },
+        "description": {
+          "en-us": "Resources will reappear 150% more quickly than usual in the Cania Fields area."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/34154.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Oats",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/533-oats",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/533-oats"
+        },
+        "name": {
+          "en-us": "Oats",
+          "pt-br": "Aveia"
+        },
+        "qty": "20"
+      }
+    },
+    {
+      "date": "2020-02-24",
+      "merida": "Vinstyl",
+      "bonus": {
+        "title": {
+          "en-us": "Experience Points and Loot"
+        },
+        "description": {
+          "en-us": "Experience gains and the chances of obtaining loot are increased by 35% in the Astrub Sewers zone."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/47037.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Tofu+Beak",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/366-tofu-beak",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/366-tofu-beak"
+        },
+        "name": {
+          "en-us": "Tofu Beak",
+          "pt-br": "Bico do Tofu"
+        },
+        "qty": "4"
+      }
+    },
     {
       "date": "2020-02-25",
       "merida": "Fitsef",

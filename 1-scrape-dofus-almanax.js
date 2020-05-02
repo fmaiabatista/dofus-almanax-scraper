@@ -1,26 +1,39 @@
 const fs = require("fs");
 const axios = require("axios");
 const eachDayOfInterval = require("date-fns/eachDayOfInterval");
-const startOfYear = require("date-fns/startOfYear");
-const endOfYear = require("date-fns/endOfYear");
+const getDayOfYear = require("date-fns/getDayOfYear");
+const parseISO = require("date-fns/parseISO");
+const format = require("date-fns/format");
 const getItem = require("./helpers/getItem");
 const getLinks = require("./helpers/getLinks");
 const getNamePTBR = require("./helpers/getNamePTBR");
 const handleErrors = require("./helpers/handleErrors");
+const findIssues = require("./helpers/findIssues");
 const c = require("./helpers/constants");
 
+const getDateOfYear = require("./helpers/getDateOfYear");
+
+console.clear();
+
+// By default we'll scrape from 1st, Jan to 31st Dec of the current year
+let start = c.CURRENT_YEAR_START;
+let end = c.CURRENT_YEAR_END;
+
+// If there are CLI arguments, we'll use those to define date range
+// Expected 2 args with format "2020/01/25" (include quotes)
 const args = process.argv.slice(2);
-if (args.length) {
-  console.log(`Received custom args for date range: `);
+if (args.length === 2) {
+  console.log(
+    `💬 Received custom args for date range: ${args.join(" and ")}\n`
+  );
+  start = new Date(args[0]);
+  end = new Date(args[1]);
 }
 
 // Calendar array to be used in the dynamic URL
-const dates = eachDayOfInterval({
-  start: startOfYear(new Date()),
-  end: endOfYear(new Date())
-  // start: new Date(2020, 5, 3), // For testing
-  // end: new Date(2020, 5, 3) // For testing
-}).map(date => date.toISOString().split("T")[0]);
+const dates = eachDayOfInterval({ start, end }).map(date =>
+  format(date, "yyyy-MM-dd")
+);
 
 // Get a copy from or create object that will hold the data
 let almanax;
@@ -38,7 +51,10 @@ const getAlmanax = async () => {
   console.log("🕵️‍♂️  Start scraping...");
 
   // Loop through calendar array
-  for (const [i, date] of dates.entries()) {
+  for (const [_, date] of dates.entries()) {
+    // Get index from day of the year ("2020-01-01" -> 1 -> 0)
+    const i = getDayOfYear(parseISO(date)) - 1;
+
     if (almanax[i]) {
       // If almanax entry already exists (doesn't check content)
       console.log(`🤙 Item for ${date} already exists. Skipping.`);
@@ -106,6 +122,7 @@ const getAlmanax = async () => {
   );
 };
 
+// Write if new, overwrite if changed, skips if unchanged. Always returns file.
 const writeFile = async () => {
   try {
     await getAlmanax();
@@ -118,7 +135,8 @@ const writeFile = async () => {
       if (JSON.stringify(prevAlmanax) === JSON.stringify(almanax)) {
         console.log("\n📁 Content did not change. Skipping.");
         console.log(`✅ File is ready, unchanged at "${c.FILEPATH}"`);
-        return;
+
+        return JSON.parse(fs.readFileSync(c.FILEPATH, "UTF-8"));
       }
     }
 
@@ -126,10 +144,22 @@ const writeFile = async () => {
     console.log("\n📁 Writing file...");
     fs.writeFileSync(c.FILEPATH, JSON.stringify({ almanax }, null, 2));
     console.log(`✅ File is ready at "${c.FILEPATH}"`);
+
+    return JSON.parse(fs.readFileSync(c.FILEPATH, "UTF-8"));
   } catch (err) {
     handleErrors(err, "writeFile");
   }
 };
 
-console.clear();
-writeFile();
+// TODO - improve chaining... ideally this should be explicit:
+// await getAlmanax... writeFile can by sync if given almanax arg... findIssues is also sync given a file arg
+const run = async () => {
+  try {
+    const almanax = (await writeFile()).almanax;
+    findIssues(almanax);
+  } catch (err) {
+    handleErrors(err, "run");
+  }
+};
+
+run();
