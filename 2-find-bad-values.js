@@ -1,4 +1,23 @@
-// This file will contain code that checks for invalid entries in the Almanax JSON
+const fs = require("fs");
+const almanax = require("./assets/almanax.json").almanax;
+const getDateOfYear = require("./helpers/getDateOfYear");
+const c = require("./helpers/constants");
+
+almanax.forEach((entry, i) => {
+  // Check if entry is null
+
+  if (!entry) {
+    console.log(`❗️👎 Entry for ${getDateOfYear(i)} is null`);
+  } else if (!entry.item.link[c.ENUS]) {
+    console.log(`❗️🔗 ${entry.item.name[c.ENUS]} is missing link.en-us`);
+  } else if (!entry.item.link[c.PTBR]) {
+    console.log(`❗️🇧🇷 ${entry.item.name[c.ENUS]} is missing link.pt-br`);
+  } else if (!entry.item.name[c.PTBR]) {
+    console.log(`❗️🇧🇷 ${entry.item.name[c.ENUS]} is missing name.pt-br`);
+  }
+});
+
+// console.log(`Entry for ${getDateOfYear(0)} is null`);
 
 /*
  * Because some items could not be found, the next fil≈e (4-check-data.js)
