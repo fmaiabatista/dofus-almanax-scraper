@@ -9,8 +9,8 @@
       "request": "launch",
       "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${file}",
-      "args": ["\"2020/12/18\"", "\"2020/12/25\""]
+      "program": "${file}"
+      // "args": ["\"2020/12/18\"", "\"2020/12/25\""]
     }
   ]
 }

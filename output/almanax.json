@@ -8788,14 +8788,203 @@
         "qty": "15"
       }
     },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    {
+      "date": "2020-12-18",
+      "merida": "Sebsokk",
+      "bonus": {
+        "title": {
+          "en-us": "Increased challenges"
+        },
+        "description": {
+          "en-us": "Bonuses gained by completing challenges are increased by 200% in all dungeons."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/6007.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Twiggy+Sword",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/weapons/44-twiggy-sword",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/armas/44-twiggy-sword"
+        },
+        "name": {
+          "en-us": "Twiggy Sword",
+          "pt-br": "Espada de graveto"
+        },
+        "qty": "3"
+      }
+    },
+    {
+      "date": "2020-12-19",
+      "merida": "Reivax",
+      "bonus": {
+        "title": {
+          "en-us": "Loot"
+        },
+        "description": {
+          "en-us": "The chances of obtaining loot from Kwismas monsters are increased by 75%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/153007.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Snowflake",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/12845-snowflake",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/12845-snowflake"
+        },
+        "name": {
+          "en-us": "Snowflake",
+          "pt-br": "Floco de neve"
+        },
+        "qty": "2"
+      }
+    },
+    {
+      "date": "2020-12-20",
+      "merida": "Benjak",
+      "bonus": {
+        "title": {
+          "en-us": "Saved ingredients"
+        },
+        "description": {
+          "en-us": "Harvesters and craftsmen save 15% of their ingredients when they craft items in the Porco Territory area."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/40660.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Aluminite",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/747-aluminite",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/747-aluminite"
+        },
+        "name": {
+          "en-us": "Aluminite",
+          "pt-br": "Aluminita"
+        },
+        "qty": "1"
+      }
+    },
+    {
+      "date": "2020-12-21",
+      "merida": "Grug",
+      "bonus": {
+        "title": {
+          "en-us": "Experience points"
+        },
+        "description": {
+          "en-us": "Experience gained in the Heroes&apos; Cemetery area is increased by 100%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/47432.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Pointed+Tooth",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/2279-pointed-tooth",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/2279-pointed-tooth"
+        },
+        "name": {
+          "en-us": "Pointed Tooth",
+          "pt-br": "Dente Afiado"
+        },
+        "qty": "3"
+      }
+    },
+    {
+      "date": "2020-12-22",
+      "merida": "Maxares",
+      "bonus": {
+        "title": {
+          "en-us": "Reward Bonus"
+        },
+        "description": {
+          "en-us": "The reward bonus on groups of monsters increases every 3 hours in the Pirate Boat and Castaway Island areas."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/15129.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Sailor+Knot",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/13343-sailor-knot",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/13343-sailor-knot"
+        },
+        "name": {
+          "en-us": "Sailor Knot",
+          "pt-br": "Nó de Marinheiro"
+        },
+        "qty": "2"
+      }
+    },
+    {
+      "date": "2020-12-23",
+      "merida": "Math",
+      "bonus": {
+        "title": {
+          "en-us": "Plenty of game"
+        },
+        "description": {
+          "en-us": "The quantity of Tender Meat harvested by Hunters is increased by 125%."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/63483.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Tender+Meat",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/resources/17130-tender-meat",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/recursos/17130-tender-meat"
+        },
+        "name": {
+          "en-us": "Tender Meat",
+          "pt-br": "Carne tenra"
+        },
+        "qty": "4"
+      }
+    },
+    {
+      "date": "2020-12-24",
+      "merida": "Milivar",
+      "bonus": {
+        "title": {
+          "en-us": "Increased challenges"
+        },
+        "description": {
+          "en-us": "Bonuses gained by completing challenges are increased by 150% against Kwismas monsters."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/42164.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Gingerbread+Sleigh",
+          "en-us": "https://www.dofus.com/en/mmorpg/encyclopedia/consumables/12844-gingerbread-sleigh",
+          "pt-br": "https://www.dofus.com/pt/mmorpg/enciclopedia/itens-consumiveis/12844-gingerbread-sleigh"
+        },
+        "name": {
+          "en-us": "Gingerbread Sleigh",
+          "pt-br": "Trenó de Pão de Especiarias"
+        },
+        "qty": "1"
+      }
+    },
+    {
+      "date": "2020-12-25",
+      "merida": "Simsof",
+      "bonus": {
+        "title": {
+          "en-us": "Surprise gifts"
+        },
+        "description": {
+          "en-us": "Kwismas Gifts have been added to monster loot. When you use one, you&apos;ll receive resources or random items."
+        }
+      },
+      "item": {
+        "img": "http://static.ankama.com/dofus/www/game/items/200/89002.w75h75.png",
+        "link": {
+          "search": "https://www.dofus.com/en/search?q=Kwismas+Gift"
+        },
+        "name": {
+          "en-us": "Kwismas Gift"
+        },
+        "qty": "4"
+      }
+    },
     {
       "date": "2020-12-26",
       "merida": "Fhenris",

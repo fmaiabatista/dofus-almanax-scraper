@@ -2,8 +2,8 @@ const axiosRetry = require("axios-retry");
 const startOfYear = require("date-fns/startOfYear");
 const endOfYear = require("date-fns/endOfYear");
 
-const FILEPATH = "./assets/almanax.json";
-const LOGPATH = "./assets/log.txt";
+const FILEPATH = `${__dirname}/../output/almanax.json`;
+const LOGPATH = `${__dirname}/../output/log.txt`;
 const ENUS = "en-us";
 const PTBR = "pt-br";
 const CURRENT_YEAR_START = startOfYear(new Date());
