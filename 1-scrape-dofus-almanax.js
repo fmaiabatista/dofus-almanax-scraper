@@ -9,6 +9,11 @@ const getNamePTBR = require("./helpers/getNamePTBR");
 const handleErrors = require("./helpers/handleErrors");
 const c = require("./helpers/constants");
 
+const args = process.argv.slice(2);
+if (args.length) {
+  console.log(`Received custom args for date range: `);
+}
+
 // Calendar array to be used in the dynamic URL
 const dates = eachDayOfInterval({
   start: startOfYear(new Date()),
