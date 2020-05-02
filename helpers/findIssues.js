@@ -10,13 +10,14 @@ module.exports = almanax => {
   almanax.forEach((entry, i) => {
     // Check if entry is null
     let msg;
+    const date = getDateOfYear(i);
 
     if (!entry) {
-      msg = `🔦 Entry for ${getDateOfYear(i)} is null`;
+      msg = `🔦 ${date}: Entry is null`;
     } else if (!entry.item.link[c.ENUS]) {
-      msg = `🔗 ${entry.item.name[c.ENUS]} is missing link.en-us`;
+      msg = `🔗 ${date}: ${entry.item.name[c.ENUS]} is missing link.en-us`;
     } else if (!entry.item.name[c.PTBR]) {
-      msg = `🇧🇷 ${entry.item.name[c.ENUS]} is missing name.pt-br`;
+      msg = `🇧🇷 ${date}: ${entry.item.name[c.ENUS]} is missing name.pt-br`;
     }
 
     if (msg) {
