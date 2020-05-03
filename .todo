@@ -1,2 +1,8 @@
-Later:
-  Create "bonus.name.br" and "bonus.description.br" with some translation service
+TODO
+
+Call getImages from the main file (and make it write "b64" inside the Almanax JSON)
+Get a better grasp of the use of axiosRetry. Currently it's being imported in every file that makes a request and sometimes it's inside the exported fn, sometimes it's not
+
+LATER
+
+Create "bonus.name.br" and "bonus.description.br" with some translation service

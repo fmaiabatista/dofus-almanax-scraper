@@ -92,8 +92,8 @@ module.exports = async () => {
             }
           },
           item: {
-            img,
             link: {
+              img,
               search,
               [c.ENUS]: linkENUS,
               [c.PTBR]: linkPTBR

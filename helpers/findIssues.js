@@ -8,7 +8,6 @@ module.exports = almanax => {
   const log = [];
 
   almanax.forEach((entry, i) => {
-    // Check if entry is null
     let msg;
     const date = getDateOfYear(i);
 
