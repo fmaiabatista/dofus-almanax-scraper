@@ -1,11 +1,11 @@
-const fs = require("fs");
-const axios = require("axios");
-const cheerio = require("cheerio");
-const handleErrors = require("./handleErrors");
-const c = require("./constants");
+const fs = require('fs');
+const axios = require('axios');
+const cheerio = require('cheerio');
+const handleErrors = require('./handleErrors');
+const c = require('./constants');
 
 module.exports = async almanax => {
-  console.log("👨‍🎨 Start getting images...");
+  console.log('👨‍🎨 Start getting images...');
 
   // Set request retry conditions
   c.AXIOS_RETRY(axios);
@@ -23,8 +23,8 @@ module.exports = async almanax => {
         date,
         item: {
           link: { img: imgURL },
-          name: { [c.ENUS]: name }
-        }
+          name: { [c.ENUS]: name },
+        },
       } = entry;
 
       console.log(`\n🖼 Grabbing image for ${date}: ${name}`);
@@ -39,14 +39,14 @@ module.exports = async almanax => {
 
       if (!existsB64Entry || !existsImageFile) {
         const res = await axios.get(imgURL, {
-          responseType: "arraybuffer"
+          responseType: 'arraybuffer',
         });
 
         // Save B64 code in array
         if (existsB64Entry) {
           console.log(`🤙 B64 for ${date} already exists. Skipping.`);
         } else {
-          const b64 = Buffer.from(res.data, "binary").toString("base64");
+          const b64 = Buffer.from(res.data, 'binary').toString('base64');
           almanaxB64[i] = { [date]: b64 };
         }
 
@@ -54,13 +54,13 @@ module.exports = async almanax => {
         if (existsImageFile) {
           console.log(`🤙 Image for ${date} already exists. Skipping.`);
         } else {
-          console.log("🎨 Writing image file...");
-          fs.writeFileSync(imgPath, Buffer.from(res.data, "base64"));
+          console.log('🎨 Writing image file...');
+          fs.writeFileSync(imgPath, Buffer.from(res.data, 'base64'));
           console.log(`✅ Image file is ready at "${imgPath}"`);
         }
       }
     } catch (err) {
-      handleErrors(err, "getImages");
+      handleErrors(err, 'getImages');
     }
   }
 
@@ -70,14 +70,14 @@ module.exports = async almanax => {
 
     // Check if content did not change
     if (JSON.stringify(prevAlmanaxB64) === JSON.stringify(almanaxB64)) {
-      console.log("\n📁 B64 file content did not change. Skipping.");
+      console.log('\n📁 B64 file content did not change. Skipping.');
       console.log(`✅ B64 file is ready, unchanged at "${c.B64PATH}"`);
       return;
     }
   }
 
   // Write B64 JSON to file
-  console.log("\n📁 Writing B64 file...");
+  console.log('\n📁 Writing B64 file...');
   fs.writeFileSync(c.B64PATH, JSON.stringify({ almanaxB64 }, null, 2));
   console.log(`✅ B64 file is ready at "${c.B64PATH}"`);
 };

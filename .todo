@@ -1,6 +1,6 @@
 TODO
 
-Call getImages from the main file (and make it write "b64" inside the Almanax JSON) !! Don't insert the b64 inside the main JSON because it'll get unnecessarily big
+remove ".w75h75" from the image link name when scraping
 Get a better grasp of the use of axiosRetry. Currently it's being imported in every file that makes a request and sometimes it's inside the exported fn, sometimes it's not
 
 LATER
